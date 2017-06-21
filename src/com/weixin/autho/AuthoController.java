@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +14,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.common.WeiXinContext;
 import com.common.utils.HttpClientUtils;
 import com.common.utils.LoggerUtils;
+import com.web.user.service.IUserService;
 import com.weixin.autho.domain.AccessToken;
 import com.weixin.autho.domain.WXUserInfo;
 
 @Controller
+@RequestMapping("/wxuser")
 public class AuthoController {
+    
+    @Autowired
+    IUserService userService;
 	
-	@RequestMapping(value="/wxuser/wxUserInfo",method=RequestMethod.GET)
+	@RequestMapping(value="/wxUserInfo",method=RequestMethod.GET)
 	public String wxUserInfo(Model model){
 		return "wxUserInfo";
 	}
@@ -47,15 +53,16 @@ public class AuthoController {
 				AccessToken accessToken = HttpClientUtils.sendHttpGet("https://api.weixin.qq.com/sns/oauth2/access_token?appid="+appid+"&secret="+secret+"&code="+code+"&grant_type=authorization_code",AccessToken.class);
 				WXUserInfo wxUserInfo = HttpClientUtils.sendHttpGet("https://api.weixin.qq.com/sns/userinfo?access_token="+accessToken.getAccess_token()+"&openid="+accessToken.getOpenid()+"&lang=zh_CN",WXUserInfo.class);
 				if(wxUserInfo!=null&&wxUserInfo.getOpenid()!=null){
-				    request.getSession().setAttribute("wxUserInfo", wxUserInfo);
-				    request.setAttribute("wxUserInfo", wxUserInfo);
+//				    request.getSession().setAttribute("wxUserInfo", wxUserInfo);
+//				    request.setAttribute("wxUserInfo", wxUserInfo);
+				    userService.login(wxUserInfo);
 				}
 				LoggerUtils.debug(AuthoController.class, "wxautho_openid:"+wxUserInfo.getOpenid());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:wxuser/wxUserInfo";
+		return "redirect:wxUserInfo";
 	}
 	
 

@@ -26,7 +26,7 @@ public class WeiXinContext {
     
     public static final String WX_SERVER_IP = "https://api.weixin.qq.com/cgi-bin/getcallbackip?access_token=ACCESS_TOKEN";
     
-    public static final String WX_AUTHO_URL="http://5d3da5a4.ngrok.io/wx_web/wxautho";
+    public static final String WX_AUTHO_URL="http://57d75926.ngrok.io/wx_web/wxuser/wxautho";
     
     public static AccessToken accessToken;
     

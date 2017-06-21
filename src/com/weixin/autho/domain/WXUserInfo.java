@@ -1,6 +1,8 @@
 package com.weixin.autho.domain;
 
-public class WXUserInfo {
+import com.web.user.domain.UserInfo;
+
+public class WXUserInfo extends UserInfo{
 
 	private String openid;
 	private String nickname;

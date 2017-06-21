@@ -1,6 +1,3 @@
-<%@page import="com.weixin.autho.domain.WXUserInfo"%>
-<%@page import="com.common.WeiXinContext"%>
-<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
@@ -28,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        
    		<div class="weui-flex" style="margin-top: 40px;">
             <div class="weui-flex__item"><div class="placeholder"></div></div>
-            <div class="weui-flex__item"><div class="placeholder"><img class="weui-media-box__thumb" alt="头像" src="${sessionScope.wxUserInfo.headimgurl }" style="width:100%;"></img></div></div>
+            <div class="weui-flex__item"><div class="placeholder"><img class="weui-media-box__thumb" alt="头像" src="${sessionScope.userinfo.headimgurl }" style="width:100%;"></img></div></div>
             <div class="weui-flex__item"><div class="placeholder"></div></div>
        	</div>	
    			
@@ -41,41 +38,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="weui-form-preview__bd">
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">openid</label>
-                    <span class="weui-form-preview__value">${sessionScope.wxUserInfo.openid }</span>
+                    <span class="weui-form-preview__value">${sessionScope.userinfo.openid }</span>
                 </div>
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">nickname</label>
-                    <span class="weui-form-preview__value">${sessionScope.wxUserInfo.nickname }</span>
+                    <span class="weui-form-preview__value">${sessionScope.userinfo.nickname }</span>
                 </div>
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">sex</label>
-                    <span class="weui-form-preview__value">${sessionScope.wxUserInfo.sex }</span>
+                    <span class="weui-form-preview__value">${sessionScope.userinfo.sex }</span>
                 </div>
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">province</label>
-                    <span class="weui-form-preview__value">${sessionScope.wxUserInfo.province }</span>
+                    <span class="weui-form-preview__value">${sessionScope.userinfo.province }</span>
                 </div>
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">city</label>
-                    <span class="weui-form-preview__value">${sessionScope.wxUserInfo.city }</span>
+                    <span class="weui-form-preview__value">${sessionScope.userinfo.city }</span>
                 </div>
                  <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">country</label>
-                    <span class="weui-form-preview__value">${sessionScope.wxUserInfo.country }</span>
+                    <span class="weui-form-preview__value">${sessionScope.userinfo.country }</span>
                 </div>
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">privilege</label>
-                    <span class="weui-form-preview__value">${sessionScope.wxUserInfo.privilege }</span>
+                    <span class="weui-form-preview__value">${sessionScope.userinfo.privilege }</span>
                 </div>
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">unionid</label>
-                    <span class="weui-form-preview__value">${sessionScope.wxUserInfo.unionid }</span>
+                    <span class="weui-form-preview__value">${sessionScope.userinfo.unionid }</span>
                 </div>
             </div>
         </div>
 	    
 	    <div class="weui-flex" style="margin:40px 40px;padding: 0 20px;">
 	    	<div class="weui-flex__item"><div class="placeholder"><a href="javascript:;" class="weui-btn weui-btn_primary" id="btn1">获取地理位置</a></div></div>
+       	</div>	
+       	
+       	<div class="weui-flex" style="margin:40px 40px;padding: 0 20px;">
+	    	<div class="weui-flex__item"><div class="placeholder"><a href="user/logout" class="weui-btn weui-btn_primary" id="btn2">退出</a></div></div>
        	</div>	
 		    
     
